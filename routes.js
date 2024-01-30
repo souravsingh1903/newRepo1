@@ -46,8 +46,8 @@ const requestHandler = (req, res) => {
       try {
         fs.writeFileSync('message.txt', msg + '\n', 'utf8');
         console.log('Message saved to message.txt:', msg);
-      } catch (err) {
-        console.error('Error writing to file:', err);
+      } catch (error) {
+        console.error('Error writing to file:', error);
       }
 
       // Redirect to the home page
@@ -59,8 +59,9 @@ const requestHandler = (req, res) => {
 
   res.setHeader('Content-type', 'text/html');
   res.write('<html>');
+
   res.write('<head><title>My First Page</title></head>');
-  res.write('<body><h1>Hello from Node.js server!</h1></body>');
+  res.write('<body><h1>Hello from Node.js server</h1></body>');
   res.write('</html>');
   res.end();
 }
