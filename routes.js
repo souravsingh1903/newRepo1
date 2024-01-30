@@ -73,3 +73,5 @@ module.exports = requestHandler;
 //     handler :  requestHandler;
 //     someText : Some text;
 // }
+// npm install nodemon --save this would install as a production dependency.
+// --save-dev used for development 
