@@ -1,17 +1,20 @@
 const fs = require('fs');
 const requestHandler = (req, res) => {
-    const url = req.url;
+  const url = req.url;
   const method = req.method;
+
   if (url === '/') {
     // Read the last message from the file
     let lastMessage = '';
     try {
       const messages = fs.readFileSync('message.txt', 'utf8').split('\n').filter(Boolean);
-      if (messages.length > 0) {
-        lastMessage = messages[messages.length - 1];
-      }
+        lastMessage = messages;
     } catch (err) {
       console.error('Error reading file:', err);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/html');
+      res.write('<html><body><h1>Internal Server Error</h1></body></html>');
+      return res.end();
     }
 
     res.write('<html>');
@@ -20,7 +23,6 @@ const requestHandler = (req, res) => {
     
     // Display the last message at the top of the form
     if (lastMessage) {
-
       res.write(`<p>${lastMessage}</p>`);
     }
 
@@ -46,20 +48,23 @@ const requestHandler = (req, res) => {
       try {
         fs.writeFileSync('message.txt', msg + '\n', 'utf8');
         console.log('Message saved to message.txt:', msg);
+
+        // Redirect to the home page
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
       } catch (error) {
         console.error('Error writing to file:', error);
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<html><body><h1>Internal Server Error</h1></body></html>');
+        return res.end();
       }
-
-      // Redirect to the home page
-      res.statusCode = 302;
-      res.setHeader('Location', '/');
-      return res.end();
     });
   }
 
   res.setHeader('Content-type', 'text/html');
   res.write('<html>');
-
   res.write('<head><title>My First Page</title></head>');
   res.write('<body><h1>Hello from Node.js server</h1></body>');
   res.write('</html>');
@@ -74,5 +79,3 @@ module.exports = requestHandler;
 //     handler :  requestHandler;
 //     someText : Some text;
 // }
-// npm install nodemon --save this would install as a production dependency.
-// --save-dev used for development 
