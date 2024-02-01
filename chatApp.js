@@ -42,7 +42,7 @@ app.post("/", (req, res) => {
     messages.push(fullMessage);
 
     // Store messages in the file
-    fs.writeFileSync("username.txt", messages.join('\n'), { flag: 'w' }, (err) => {
+    fs.writeFile("username.txt", messages.join('\n'), { flag: 'w' }, (err) => {
         if (err) {
             console.error(err);
             res.status(500).send("Internal Server Error");

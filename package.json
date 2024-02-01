@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "start-server": "node app.js",
-    "chat-server": "nodemon chatApp.js"
+    "chat-server": "node chatApp.js"
   },
   "author": "Sourav Singh",
   "license": "ISC",

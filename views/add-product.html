@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        main{
+            padding: 1rem
+        }
+
+       .main-header {
+        width : 100vw;
+        height :3.5rem;
+        background-color: rgb(77, 208, 213);
+        padding: 0 1.5rem;
+       }
+
+       .main-header__nav{
+        height : 100%;
+        display: flex;
+        align-items: center;
+       }
+       .main-header__item{
+        margin: 0 1rem;
+        padding: 0;
+       }
+
+       .main-header__item a{
+        text-decoration: none;
+        color:rgba(107, 10, 10, 0.864);
+       }
+
+       .main-header__item a:hover,
+       .main-header__item a:active,
+       .main-header__item a.active{
+        color:rgb(243, 17, 17);
+       }
+
+       .main-header__item-list{
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+       }
+
+       .product-form{
+        width  :20rem;
+        max-width: 90%;
+        margin: auto;
+       }
+
+
+       .form-control{
+        margin: 1rem 0;
+       }
+
+       .form-control label,
+       .form-control input{
+        display: block;
+        width: 100%;
+       }
+
+       .form-control input{
+        border: 1px solid #d6d023;
+        font: inherit;
+        border-radius: 2px;
+       }
+
+       button{
+        font: inherit;
+        background-color: antiquewhite;
+        border: 1px solid #d6d023;
+        border-radius: 3px;
+        cursor: pointer;
+       }
+
+       button:hover,
+       button:active{
+        background-color: cadetblue;
+        color:azure;
+       }
+
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a  href="/">Shop</a></li>
+                <li class="main-header__item"><a class="active" href="/admin/add-product">Add Product</a></li>
+                <li class="main-header__item"><a href="/contactus">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form class="product-form" action="/add-product" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <button type="submit">Add Product</button>
+        </form>
+    </main>
+</body>
+
+</html>

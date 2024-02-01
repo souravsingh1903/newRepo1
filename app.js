@@ -6,7 +6,10 @@
 //  Express
 // const http = require('http');
 // const routes = require('./routes');
+
+const path = require('path');
 const express = require("express");
+
 
 const bodyParser = require("body-parser");
 
@@ -16,17 +19,19 @@ const adminRoutes = require('./router/admin')
 
 const shopRoutes  = require('./router/shop');
 
+const contactRoutes = require('./router/contactus');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(adminRoutes);
+app.use('/admin',adminRoutes);
 
 app.use(shopRoutes);
 
+app.use(contactRoutes);
+
 app.use((req, res, next) => {
- res.status(404).send('<h1>Page Not found</h1>');
-})
+ res.status(404).sendFile(path.join(__dirname, 'views' , '404.html'));
+});
 
-// const server = http.createServer(app);
 
-// server.listen(3000);
 app.listen(3000);
