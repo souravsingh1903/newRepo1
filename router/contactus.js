@@ -2,23 +2,17 @@ const express = require('express');
 const path = require('path');
 
 const router = express.Router();
-const rootDir = require('../util/path');
+const contactController = require('../controllers/contact');
 // Add middleware to parse JSON data
 router.use(express.json());
 
-router.get("/contactus", (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'contact-us.html'));
-});
+//Get Contacts
+router.get("/contactus", contactController.getContacts );
 
-router.post("/contactus", (req, res, next) => {
-    console.log(req.body);
-    
-    res.redirect('/success');
+//post contacts
+router.post("/contactus", contactController.postContacts);
 
-});
-
-router.get("/success", (req,res,next) => {
-    res.send('<h1>Form Successfully Filled</h1>');
-});
+//get contacts
+router.get("/success", contactController.getSucess);
 
 module.exports = router;
